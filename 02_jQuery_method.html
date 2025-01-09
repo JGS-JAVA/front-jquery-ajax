@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery - 기능 활용</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    #content{
+      margin-top: 20px;
+      padding: 10px;
+      border: 1bx solid #ddd;
+      background-color: thistle;
+
+    }
+    .new-item {
+      color: green;
+    }
+    .error{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+ <h1>간단한 폼처리</h1>
+<form id="simpleForm">
+  <label for="username">이름</label>
+  <input type="text" id="username" name="username" placeholder="이름임력">
+  <button type="submit">제출</button>
+  <button type="button" id="resetForm">초기화</button>
+</form>
+<div id="content">제출결과 여기표시</div>
+<script>
+  // $(document).read = 읽기  /  $(document).ready = 기능준비 설정
+  $(document).ready(function (){
+    // 폼 제출시 기능 .submit(function(event){})
+    $('#simpleForm').submit(function (event){
+      //제출시 기본제출동작 방지 -> 확인후 제출하기
+      event.preventDefault();
+      // input에 입력된 username  값 가져오기 $('#아이디명').val();    ->  val = value
+      // input에 값 존재시 그 값으로 글자변경
+      // input에 값 없을시 alert 이름 입력해주세요 표시
+      const username = $('#username').val();
+      if(username){ // 안녕 ㅇㅇㅇ님 -> 적성한 이름 들어가게 설정 ``
+        //$('#content').text('안녕 ㅇㅇㅇ님')
+        $('#content').text("안녕 "+username+"님");
+        $('#content').text(`안녕 ${username}님`); // 두번째걸로 덮어쓰기 / 미리보기 클릭후 ctrl + ` 로 뷰보기 설정
+      }else {
+        alert("이름 입력해주세요")
+      }
+      /*
+      const username = $(`#username`).val();  <- 써야 안전하다
+      $(`#username`).val()
+      * if($('#username').val()){
+        $('#content').text("안녕 "+username+"님");
+        $('#content').text(`안녕 ${username}님`);
+      }else{}
+      * */
+    })
+      $('#resetForm').click(function (event){
+          event.preventDefault();
+          $('#username').val();
+
+          $('#content').text('제출결과 여기에 표시됨');
+
+
+      })
+  })
+</script>
+</body>
+</html>
