@@ -58,13 +58,30 @@
 </script>
 
 
-<button id="loadCat">고양이 사진 가져오기</button>
+<button id="loadimages2">고양이 사진 가져오기</button>
 <div id="catContainer"></div>
 
 <script>
+    $('#loadimages2').click(function () {
+        $.ajax({
+            // 무료 강아지 사진 이미지 제공 search?limit=1 랜덤으로 1장만 검색한다.
+            url: 'https://api.thecatapi.com/v1/images/search?limit=1',
+            method: 'GET',
+            success:
+                function (data) {
 
-    // https://api.thecatapi.com/v1/images/search?limit=1  주소를 이용해서 고양이사진 랜덤으로 1장 가져오기
-    // 기본으로 배열형태로 되어있음
+                    $('#catContainer').empty();
+                    $('#catContainer').append(
+
+                        '<img class="image-item" src= ' + data[0].url + ' >'
+                    );
+                },
+            error:
+                function () {
+                    $('#catContainer').html('<p>고양이 사진을 가져오는 데 실패했습니다.</p>');
+                }
+        })
+    })
 </script>
 </body>
 </html>
