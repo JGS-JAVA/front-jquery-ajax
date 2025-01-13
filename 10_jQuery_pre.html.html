@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toggle</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        #sideMenu {
+            background-color: #2c3e50;
+            color: #ddd;
+            width: 120px;
+            height: 100vh;
+        }
+
+
+        .menu-icon:hover{
+            cursor: pointer;
+        }
+        .close-icon:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-icon" id="menuIcon" onclick="toggleMenu(true)">
+        &#9776;</div>
+<div id="sideMenu">
+    <div class="close-icon" onclick="toggleMenu(false)">
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&times;
+    </div>
+    <li>메인화면</li>
+    <li>start game</li>
+    <li>bamboo</li>
+
+</div>
+
+
+</body>
+<script>
+    // function toggleMenu(show) {
+    //     const sideMenu = document.getElementById('sideMenu');
+    //     if (show) {
+    //         sideMenu.style.visibility = 'visible';
+    //         sideMenu.style.opacity = '1';
+    //         sideMenu.classList.add('active');
+    //     } else {
+    //         sideMenu.classList.remove('active');
+    //         sideMenu.style.visibility = 'hidden';
+    //         sideMenu.style.opacity = '0';
+    //     }
+    // }
+
+    function toggleMenu(show){
+        $(`#sideMenu`)
+
+    }
+</script>
+</html>
