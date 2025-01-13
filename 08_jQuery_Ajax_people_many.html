@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08_jQuery_Ajax_people</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #4267b2;
+            color: white;
+            padding: 1em;
+            width: 100%;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .profiles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px;
+        }
+
+        .profile-container {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container h2 {
+            margin: 15px 0 5px;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .profile-container p {
+            font-size: 0.9em;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        button {
+            background-color: #4267b2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #365899;
+        }
+    </style>
+</head>
+<body>
+<header>Facebook 스타일 프로필</header>
+<div class="profiles-container" id="profilesContainer"></div>
+<button id="loadProfiles">새로운 친구 찾기</button>
+
+
+<script>
+    function functionProfile() {
+        const user =
+            console.log("" +);
+
+        $.ajax({
+            url: "https://randomuser.me/api/?results=5",
+            method: "GET",
+            success:
+                function (data) {
+
+                        $('#profilesContainer').html(""); // 초기화
+                    $.each(data.results, function (index, value) {
+                       // $('#profilesContainer').html(""); // 초기화
+                        // each 내부에서 프로필 컨테이너 div 초기화시 반복문 돌아갈 때마다 기존데이터 지운다
+                        $('#profilesContainer').append(
+                            `
+                            <div class="profile-container">
+                                <img src="${value.picture.large}">
+                                <h2>${value.name.first} ${value.name.last} </h2>
+                                <p>이메일: ${value.email}</p>
+                                <p>위치: ${value.location.city},${value.location.city}</p>
+                                <p>아이디: ${value.login.uuid}</p>
+                            </div>
+                            `
+                        )
+                    })
+                    currentPage++; //페이지 번호 증가
+                },
+            error:
+                function () {
+                    $("#prifilePic").text("<p>이미지를 불러오는데 실패했습니다. 다시 시도해주세요.</p>");
+                }
+        })
+    }
+
+    functionProfile();
+    $("#loadProfile").click(
+        function () {
+            functionProfile();
+        }
+    )
+</script>
+
+
+<!-- - **프로필 사진**: `user.picture.large`-->
+<!-- - **이름**: `user.name.first` + `user.name.last`-->
+<!-- - **이메일**: `user.email`-->
+<!-- - **위치**: `user.location.city` + `user.location.country`-->
+<!-- - **아이디**: `user.login.uuid`-->
+</body>
+</html>

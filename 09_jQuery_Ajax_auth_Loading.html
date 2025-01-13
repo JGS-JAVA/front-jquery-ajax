@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>api auth loading</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<header>영화 평점 조회</header>
+<div class="main-container">
+<div class="section" id="topMovies">
+  <h3>평점 높은 영화</h3>
+  <div class="movie-list" id="topRatedMovies">
+
+  </div>
+</div>
+</div>
+
+
+
+<script>
+ // omdapi 사이트로 평점 내림차순 정렬
+ $.ajax({
+   url:`http://www.omdbapi.com/?s=Inception&apikey=본인키`,
+   method:'GET',
+   success:
+           function (data){
+
+             $.each(data.Search, function (index, value){
+               $("#topRatedMovies").append(
+                       `
+                      <div class="movie-item">
+                      <img src="${value.Poster}">
+                      <h3>${value.Title}</h3>
+                      <p>YEAR: ${value.Year}</p>
+                        </div>
+                      `
+               )
+             })
+           },
+   error:
+           function () {
+             alert("서버 에러 데이터 로딩 실패")
+           }
+ })
+
+loadMovies();
+
+
+
+</script>
+</body>
+
+</html>
